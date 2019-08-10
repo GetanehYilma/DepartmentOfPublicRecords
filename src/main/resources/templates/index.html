@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+	<title>Welcome to Wakanda</title>
+</head>
+
+<body>
+	<div class = "container">
+	<h1 class = "shadow-lg p-3 mb-2 bg-info rounded text-white">Welcome to Wakanda Republic, Department of Public Records</h1>
+	</div>	
+	<nav aria-label="breadcrumb" class = "container">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item active" aria-current="page">Home</li>
+		    <li class="breadcrumb-item"><a th:href="@{/citizen/list}">Citizens</a></li>
+		    <li class="breadcrumb-item"><a th:href="@{/citizen/add}">Add New Citizen</a></li>
+		    
+		  </ol>
+		</nav>
+		
+		<h1 class = "container">This is home page for<br> Wakanda Republic, Department of Public Records</h1>
+	
+</body>
+</html>

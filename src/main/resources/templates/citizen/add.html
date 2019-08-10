@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+	<title>DOPR: Add New Citizen</title>
+</head>
+
+<body>
+	<div class = "container">
+	<h1 class = "shadow-lg p-3 mb-2 bg-info rounded text-white">Welcome to Wakanda Republic, Department of Public Records</h1>
+	</div>	
+	<nav aria-label="breadcrumb" class = "container">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item"><a th:href="@{/home}">Home</a></li>
+		    <li class="breadcrumb-item"><a th:href="@{/citizen/list}">Citizens</a></li>
+		    <li class="breadcrumb-item active" aria-current="page">Add New Citizen</li>
+		  </ol>
+		</nav>
+		
+		<h1 class = "container">Add New Product</h1>
+		<div class = "container">
+		<form id="citizenRegistrationForm" method="post" action="/citizen/add" th:object="${citizen}">
+            <fieldset >
+                <input type="hidden" name="citizenId" th:value="${citizen.citizenId}"/>                
+                <div class="row">
+                <div class="col-md-4">
+	                <div class="form-group">
+	                    <label for="state">State:</label>
+	                    <span th:if="${#fields.hasErrors('state')}" th:errors="*{state}"
+	                          class="alert alert-danger"></span>
+	                    <select name="state" id="supplier" class="form-control" required="required" autofocus>
+	                        <option value="">Select a State</option>
+	                        <option th:each="state : ${states}" th:value="${state.stateId}" th:text="${state.stateName}"></option>
+	                    </select>
+	                </div>
+                </div>
+                
+                	<div class="col-md-4">
+                        <div class="form-group">
+                            <label for="socialSecirityNumber">SSN</label>
+                            <span th:if="${#fields.hasErrors('socialSecurityNumber')}" th:errors="*{socialSecurityNumber}"
+                                  class="alert alert-danger"></span>
+                            <input id="socialSecurityNumber" name="socialSecurityNumber" type="text" class="form-control" 
+                            		aria-describedby="socialSecurityNumberHelp" required="required" placeholder="123-45-6789"
+                                   
+                                   		pattern="[0-9]{3}[0-9]{2}[0-9]{4}"
+                           			th:value="${citizen.socialSecurityNumber}">
+                           			 <small id="cgpaHelp" class="form-text text-muted">Enter like this (123-456-7898)</small>
+                        </div>
+                    </div>            
+                   
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                                  class="alert alert-danger"></span>
+                            <input id="firstName" name="firstName" type="text" required="required" class="form-control"
+                                   th:value="${citizen.firstName}">
+                        </div>
+                    </div>               
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="middleName">Middle Name</label>                          
+                            <input id="middleName" name="middleName" type="text" class="form-control"
+                                   th:value="${citizen.middleName}">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="lastName">First Name</label>
+                            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                                  class="alert alert-danger"></span>
+                            <input id="lastName" name="lastName" type="text" required="required" class="form-control"
+                                   th:value="${citizen.lastName}">
+                        </div>
+                    </div>
+    			</div>
+               
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="dateOfBirth">Date Of Birth</label>
+                            <span th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"
+                                      class="alert alert-danger"></span>
+                            <input id="dateOfBirth" name="dateOfBirth" type="date" required="required" class="form-control"
+                                   th:value="${citizen.dateOfBirth}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="yearlyIncome">Yearly Income</label>
+                            <span th:if="${#fields.hasErrors('yearlyIncome')}" th:errors="*{yearlyIncome}"
+                                      class="alert alert-danger"></span>
+                            <input id="yearlyIncome" name="yearlyIncome" type="number" required="required" class="form-control"
+                                   th:value="${citizen.yearlyIncome}">
+                        </div>
+                    </div>
+                    
+                </div>
+				
+                <div style="float:left;">
+                    <a th:href="@{/citizen/list}" class="btn btn-outline-warning">Cancel</a>&nbsp;&nbsp;&nbsp; 
+                   
+                     <input type="submit" id="btnSubmit" class="btn btn-outline-success" th:value="Save"> 
+       				
+                </div>
+            </fieldset>
+        </form>
+        </div>
+</body>
+</html>

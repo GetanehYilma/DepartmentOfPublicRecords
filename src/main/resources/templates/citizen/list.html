@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+	<title>GDM: List of Suplliers</title>
+</head>
+
+<body>
+	<div class = "container">
+	<h1 class = "shadow-lg p-3 mb-2 bg-info rounded text-white">Welcome to Wakanda Republic, Department of Public Records</h1>
+	</div>	
+	<nav aria-label="breadcrumb" class = "container">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item "><a th:href="@{/home}">Home</a></li>
+		    <li class="breadcrumb-item active" aria-current="page">Citizens</li>
+		    <li class="breadcrumb-item"><a th:href="@{/citizen/add}">Add New Citizen</a></li>
+		  </ol>
+		</nav>
+		
+		<h1 class = "container">List of citizens</h1>
+		<div style="font-size: 1em" class = "container">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">SSN</th>						
+						<th scope="col">First Name</th>
+						<th scope="col">Middle Name</th>
+						<th scope="col">Last Name</th>
+						<th scope="col">Date Of Birth</th>
+						<th scope="col">Yearly Income</th>
+						
+						
+					</tr>
+					</thead>
+				<tbody>
+					<tr th:each="citizen,iterStat: ${citizens}">
+						<th scope="row" th:text="${iterStat.count}"></th>
+						<td th:text="${citizen.socialSecurityNumber}"></td>
+						<td th:text="${citizen.firstName}"></td>
+						<td th:text="${citizen.middleName}"></td>
+						<td th:text="${citizen.lastName}"></td>
+						<td th:text="${citizen.dateOfBirth}"></td>
+						<td th:text="${citizen.yearlyIncome}"></td>
+						
+						
+					</tr>
+				</tbody>
+			
+			</table>
+		</div>
+		
+		<div>
+		 <nav aria-label="pagination">
+		                <ul class="pagination justify-content-center">
+		                    <li class="page-item disabled">
+		                        <a class="page-link" href="#">Pages: </a>
+		                    </li>
+		                    <li th:each="i : ${#numbers.sequence(1, citizens.totalPages)}"
+		                        th:class="${currentPageNo}==${i-1}?'page-item active':'page-item'">
+		                        <a th:href="@{/citizen/list(pageNo=${i-1})}"
+		                           th:text="${i}" class = "page-link"></a>
+		                    </li>                    
+		                    
+		                </ul>
+		 </nav>
+		 </div>
+		 <hr>
+		 
+		 <div style="font-size: 1em" class = "container">
+		 <h3>National Yearly Income:</h3>
+		 <h3 th:text="${totalYearlyIncome}"></h3>
+		 
+		 </div>
+</body>
+</html>
